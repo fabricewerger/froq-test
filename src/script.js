@@ -3,6 +3,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import * as dat from "lil-gui";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
+import { OBJLoader } from "three/addons/loaders/OBJLoader.js";
 
 /**
  * Base
@@ -19,22 +20,18 @@ const scene = new THREE.Scene();
 /**
  * Models
  */
-const dracoLoader = new DRACOLoader();
-dracoLoader.setDecoderPath("/draco/");
-
 const gltfLoader = new GLTFLoader();
-gltfLoader.setDRACOLoader(dracoLoader);
 
 let mixer = null;
 
-gltfLoader.load("/models/Fox/glTF/Fox.gltf", (gltf) => {
-  gltf.scene.scale.set(0.025, 0.025, 0.025);
+gltfLoader.load("./Fox.glb", (gltf) => {
+  gltf.scene.scale.set(0.01, 0.01, 0.01);
   scene.add(gltf.scene);
 
-  // Animation
-  // mixer = new THREE.AnimationMixer(gltf.scene)
-  // const action = mixer.clipAction(gltf.animations[2])
-  // action.play()
+  Animation;
+  mixer = new THREE.AnimationMixer(gltf.scene);
+  const action = mixer.clipAction(gltf.animations[2]);
+  action.play();
 });
 
 /**
@@ -95,7 +92,7 @@ const camera = new THREE.PerspectiveCamera(
   0.1,
   100
 );
-camera.position.set(2, 2, 2);
+camera.position.set(1, 0.5, 2);
 scene.add(camera);
 
 // Controls
