@@ -28,10 +28,10 @@ gltfLoader.load("./Fox.glb", (gltf) => {
   gltf.scene.scale.set(0.01, 0.01, 0.01);
   scene.add(gltf.scene);
 
-  // Animation
-  // mixer = new THREE.AnimationMixer(gltf.scene)
-  // const action = mixer.clipAction(gltf.animations[2])
-  // action.play()
+  Animation;
+  mixer = new THREE.AnimationMixer(gltf.scene);
+  const action = mixer.clipAction(gltf.animations[2]);
+  action.play();
 });
 
 /**
